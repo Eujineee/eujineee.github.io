@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ko" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio | eujineee</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          animation: {
+            'spin-slow': 'spin 1.5s linear infinite',
+            'fade-in': 'fadeIn 0.6s ease-out',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0', transform: 'translateY(16px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-950 text-gray-100 font-sans antialiased">
+
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="#hero" class="text-xl font-bold text-white tracking-tight">
+          eujineee<span class="text-blue-400">.</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#skills" class="nav-link text-sm text-gray-400 hover:text-white transition-colors">Skills</a>
+          <a href="#experience" class="nav-link text-sm text-gray-400 hover:text-white transition-colors">Experience</a>
+          <a href="#projects" class="nav-link text-sm text-gray-400 hover:text-white transition-colors">Projects</a>
+          <a href="https://github.com/eujineee" target="_blank" rel="noopener noreferrer"
+             class="px-4 py-1.5 text-sm border border-blue-500 text-blue-400 rounded-full hover:bg-blue-500 hover:text-white transition-all duration-200">
+            GitHub
+          </a>
+        </div>
+        <!-- Mobile menu button -->
+        <button id="mobile-menu-btn" class="md:hidden text-gray-400 hover:text-white p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-gray-950/95 border-t border-gray-800 backdrop-blur-sm">
+      <div class="px-4 py-4 space-y-3">
+        <a href="#skills" class="block text-gray-300 hover:text-white py-2 transition-colors">Skills</a>
+        <a href="#experience" class="block text-gray-300 hover:text-white py-2 transition-colors">Experience</a>
+        <a href="#projects" class="block text-gray-300 hover:text-white py-2 transition-colors">Projects</a>
+        <a href="https://github.com/eujineee" target="_blank" class="block text-blue-400 py-2">GitHub ↗</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero / About -->
+  <section id="hero" class="min-h-screen flex items-center justify-center px-4 pt-16">
+    <div class="max-w-4xl mx-auto text-center animate-fade-in">
+      <p class="text-blue-400 text-sm font-medium tracking-widest uppercase mb-4">Welcome to my portfolio</p>
+      <h1 class="text-5xl sm:text-7xl font-bold text-white mb-6 leading-tight">
+        Hi, I'm <span class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Eujin</span>
+      </h1>
+      <p class="text-xl sm:text-2xl text-gray-400 mb-4 font-light">
+        Full-Stack Developer
+      </p>
+      <p class="text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed">
+        Laravel과 Vue.js를 즐겨 쓰는 백엔드 개발자입니다.<br>
+        깔끔한 API 설계와 안정적인 인프라 구축에 관심이 많습니다.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#projects"
+           class="px-8 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-medium transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-500/25">
+          Projects 보기
+        </a>
+        <a href="https://github.com/eujineee" target="_blank" rel="noopener noreferrer"
+           class="px-8 py-3 border border-gray-700 hover:border-gray-500 text-gray-300 hover:text-white rounded-full font-medium transition-all duration-200">
+          GitHub 방문 ↗
+        </a>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator">
+        <div class="w-6 h-10 border-2 border-gray-600 rounded-full flex justify-center pt-2">
+          <div class="w-1 h-3 bg-blue-400 rounded-full scroll-dot"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="py-24 px-4">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-16">
+        <p class="text-blue-400 text-sm font-medium tracking-widest uppercase mb-3">Tech Stack</p>
+        <h2 class="text-4xl font-bold text-white">Skills</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Backend -->
+        <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800 hover:border-blue-800 transition-colors">
+          <div class="text-2xl mb-3">⚙️</div>
+          <h3 class="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-4">Backend</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge">PHP</span>
+            <span class="skill-badge">Laravel</span>
+            <span class="skill-badge">Python</span>
+            <span class="skill-badge">REST API</span>
+          </div>
+        </div>
+
+        <!-- Frontend -->
+        <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800 hover:border-purple-800 transition-colors">
+          <div class="text-2xl mb-3">🎨</div>
+          <h3 class="text-sm font-semibold text-purple-400 uppercase tracking-wider mb-4">Frontend</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge">HTML/CSS</span>
+            <span class="skill-badge">JavaScript</span>
+            <span class="skill-badge">Vue.js</span>
+            <span class="skill-badge">Tailwind CSS</span>
+          </div>
+        </div>
+
+        <!-- Database -->
+        <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800 hover:border-green-800 transition-colors">
+          <div class="text-2xl mb-3">🗄️</div>
+          <h3 class="text-sm font-semibold text-green-400 uppercase tracking-wider mb-4">Database</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge">MySQL</span>
+            <span class="skill-badge">SQLite</span>
+            <span class="skill-badge">Redis</span>
+          </div>
+        </div>
+
+        <!-- DevOps / Tools -->
+        <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800 hover:border-orange-800 transition-colors">
+          <div class="text-2xl mb-3">🛠️</div>
+          <h3 class="text-sm font-semibold text-orange-400 uppercase tracking-wider mb-4">DevOps / Tools</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge">Git</span>
+            <span class="skill-badge">GitHub Actions</span>
+            <span class="skill-badge">Docker</span>
+            <span class="skill-badge">Oracle Cloud</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="py-24 px-4 bg-gray-900/30">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16">
+        <p class="text-blue-400 text-sm font-medium tracking-widest uppercase mb-3">Career</p>
+        <h2 class="text-4xl font-bold text-white">Experience</h2>
+      </div>
+
+      <div class="relative">
+        <!-- Timeline line -->
+        <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gray-800 -translate-x-px"></div>
+
+        <div class="space-y-12">
+          <!-- Experience Item 1 -->
+          <div class="relative flex flex-col md:flex-row md:justify-end gap-8 md:gap-0">
+            <div class="md:w-1/2 md:pr-12 ml-12 md:ml-0">
+              <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800 hover:border-blue-800 transition-colors">
+                <div class="flex items-start justify-between mb-2">
+                  <h3 class="font-semibold text-white text-lg">회사명 / 포지션</h3>
+                  <span class="text-xs text-blue-400 bg-blue-950 px-2 py-1 rounded-full ml-2 whitespace-nowrap">2024.03 - 현재</span>
+                </div>
+                <p class="text-blue-400 text-sm font-medium mb-3">Backend Developer</p>
+                <ul class="text-gray-400 text-sm space-y-1.5">
+                  <li class="flex gap-2"><span class="text-blue-400 mt-0.5">▸</span> Laravel 기반 REST API 설계 및 개발</li>
+                  <li class="flex gap-2"><span class="text-blue-400 mt-0.5">▸</span> MySQL 쿼리 최적화 및 성능 개선</li>
+                  <li class="flex gap-2"><span class="text-blue-400 mt-0.5">▸</span> 실제 경험으로 교체해주세요</li>
+                </ul>
+              </div>
+            </div>
+            <!-- Timeline dot -->
+            <div class="absolute left-4 md:left-1/2 top-6 w-3 h-3 bg-blue-500 rounded-full -translate-x-1.5 ring-4 ring-gray-950"></div>
+          </div>
+
+          <!-- Experience Item 2 -->
+          <div class="relative flex flex-col md:flex-row gap-8 md:gap-0">
+            <div class="md:w-1/2 md:pl-12 ml-12 md:ml-auto">
+              <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800 hover:border-purple-800 transition-colors">
+                <div class="flex items-start justify-between mb-2">
+                  <h3 class="font-semibold text-white text-lg">이전 회사 / 포지션</h3>
+                  <span class="text-xs text-purple-400 bg-purple-950 px-2 py-1 rounded-full ml-2 whitespace-nowrap">2022.07 - 2024.02</span>
+                </div>
+                <p class="text-purple-400 text-sm font-medium mb-3">Junior Developer</p>
+                <ul class="text-gray-400 text-sm space-y-1.5">
+                  <li class="flex gap-2"><span class="text-purple-400 mt-0.5">▸</span> 웹 서비스 유지보수 및 기능 개발</li>
+                  <li class="flex gap-2"><span class="text-purple-400 mt-0.5">▸</span> 실제 경험으로 교체해주세요</li>
+                </ul>
+              </div>
+            </div>
+            <!-- Timeline dot -->
+            <div class="absolute left-4 md:left-1/2 top-6 w-3 h-3 bg-purple-500 rounded-full -translate-x-1.5 ring-4 ring-gray-950"></div>
+          </div>
+
+          <!-- Education -->
+          <div class="relative flex flex-col md:flex-row md:justify-end gap-8 md:gap-0">
+            <div class="md:w-1/2 md:pr-12 ml-12 md:ml-0">
+              <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800 hover:border-green-800 transition-colors">
+                <div class="flex items-start justify-between mb-2">
+                  <h3 class="font-semibold text-white text-lg">대학교 이름</h3>
+                  <span class="text-xs text-green-400 bg-green-950 px-2 py-1 rounded-full ml-2 whitespace-nowrap">2018.03 - 2022.02</span>
+                </div>
+                <p class="text-green-400 text-sm font-medium mb-1">컴퓨터공학과 / 학사</p>
+              </div>
+            </div>
+            <!-- Timeline dot -->
+            <div class="absolute left-4 md:left-1/2 top-6 w-3 h-3 bg-green-500 rounded-full -translate-x-1.5 ring-4 ring-gray-950"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="py-24 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <p class="text-blue-400 text-sm font-medium tracking-widest uppercase mb-3">Work</p>
+        <h2 class="text-4xl font-bold text-white">Projects</h2>
+        <p class="text-gray-500 mt-3 text-sm">API에서 실시간으로 불러옵니다</p>
+      </div>
+
+      <!-- Loading Spinner -->
+      <div id="projects-loading" class="flex flex-col items-center justify-center py-20">
+        <div class="w-10 h-10 border-2 border-blue-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+        <p class="text-gray-500 text-sm">프로젝트 불러오는 중...</p>
+      </div>
+
+      <!-- Error Message -->
+      <div id="projects-error" class="hidden text-center py-20">
+        <div class="text-4xl mb-4">⚠️</div>
+        <p id="projects-error-msg" class="text-gray-400 mb-2">프로젝트를 불러오지 못했습니다.</p>
+        <p class="text-gray-600 text-sm mb-6">API 서버가 실행 중인지 확인해주세요.</p>
+        <button onclick="fetchProjects()"
+                class="px-6 py-2 text-sm border border-gray-700 text-gray-300 rounded-full hover:border-gray-500 hover:text-white transition-colors">
+          다시 시도
+        </button>
+      </div>
+
+      <!-- Projects Grid -->
+      <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 px-4 border-t border-gray-800">
+    <div class="max-w-4xl mx-auto text-center">
+      <p class="text-xl font-bold text-white mb-4">
+        eujineee<span class="text-blue-400">.</span>
+      </p>
+      <div class="flex justify-center gap-6 mb-6">
+        <a href="https://github.com/eujineee" target="_blank" rel="noopener noreferrer"
+           class="text-gray-500 hover:text-white transition-colors text-sm">GitHub</a>
+        <a href="mailto:your@email.com"
+           class="text-gray-500 hover:text-white transition-colors text-sm">Email</a>
+      </div>
+      <p class="text-gray-700 text-sm">© 2025 eujineee. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
