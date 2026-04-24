@@ -3,63 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ew | Backend Engineer Portfolio</title>
+    <title>Ew | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background-color: #0f172a; color: #e2e8f0; }
-        .bento-card { background: #1e293b; border: 1px solid #334155; border-radius: 1rem; padding: 1.5rem; transition: transform 0.2s; }
-        .bento-card:hover { transform: translateY(-5px); border-color: #38bdf8; }
-        .highlight { color: #38bdf8; }
+        body { background-color: #121212; color: #ffffff; font-family: 'Inter', sans-serif; }
+        .card { background: #1e1e1e; transition: transform 0.3s ease; overflow: hidden; border-radius: 8px; }
+        .card:hover { transform: translateY(-10px); }
+        .filter-btn { color: #888; transition: color 0.3s; cursor: pointer; }
+        .filter-btn:hover, .filter-btn.active { color: #fff; border-bottom: 2px solid #fff; }
     </style>
 </head>
-<body class="p-4 md:p-12">
-    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+<body class="p-6 md:p-16">
+
+    <header class="mb-12">
+        <h1 class="text-3xl font-bold mb-6 italic">Ew.</h1>
+        <nav class="flex gap-6 text-sm font-medium border-b border-gray-800 pb-4">
+            <span class="filter-btn active">All</span>
+            <span class="filter-btn">PHP / Laravel</span>
+            <span class="filter-btn">DB Optimization</span>
+            <span class="filter-btn">Payment(PG)</span>
+        </nav>
+    </header>
+
+    <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         
-        <div class="md:col-span-2 bento-card flex flex-col justify-center">
-            <h1 class="text-4xl font-bold mb-2">안녕하세요, <span class="highlight">Ew(이유진)</span>입니다.</h1>
-            <p class="text-lg text-slate-400">안정성을 최우선으로 생각하는 <br><strong>실무 중심형 백엔드 엔지니어</strong>입니다.</p>
-        </div>
-
-        <div class="bento-card">
-            <h3 class="text-xl font-bold mb-4"><i class="fa-solid fa-code"></i> Skills</h3>
-            <div class="flex flex-wrap gap-2 text-sm">
-                <span class="bg-slate-700 px-3 py-1 rounded">PHP / Laravel</span>
-                <span class="bg-slate-700 px-3 py-1 rounded">MySQL / Oracle</span>
-                <span class="bg-slate-700 px-3 py-1 rounded">Docker</span>
-                <span class="bg-slate-700 px-3 py-1 rounded">Redis</span>
+        <div class="card group">
+            <div class="aspect-video bg-gray-800 flex items-center justify-center overflow-hidden">
+                <i class="fa-solid fa-credit-card text-4xl text-gray-600"></i>
+                <p class="text-gray-500 font-bold">PG 결제 시스템 구축</p>
+            </div>
+            <div class="p-6">
+                <h3 class="text-xl font-bold mb-2">Alipay / UnionPay 연동</h3>
+                <p class="text-gray-400 text-sm mb-4">콜백 처리, 폴링 구조 설계 및 리스크 관리</p>
+                <div class="text-xs text-gray-500">PHP / Laravel / Redis</div>
             </div>
         </div>
 
-        <div class="bento-card">
-            <h3 class="text-xl font-bold mb-2"><i class="fa-solid fa-bolt"></i> Strength</h3>
-            <p class="text-sm text-slate-400">DB 성능 최적화 전문가<br>응답 속도 80% 이상 개선 경험</p>
-        </div>
-
-        <div class="md:col-span-2 bento-card">
-            <h3 class="text-xl font-bold mb-4"><i class="fa-solid fa-gears"></i> Work Style</h3>
-            <ul class="text-sm space-y-2 text-slate-300">
-                <li>• 분석 우선: 갭 분석 후 우선순위별 작업 착수</li>
-                <li>• 전수 조사: 패턴 발견 시 시스템 전체 일괄 처리</li>
-                <li>• 리스크 관리: 영향 범위 사전 파악 및 최소화 작업</li>
-                <li>• 문서화: 일일 보고서를 통한 수정 내역 아카이빙</li>
-            </ul>
-        </div>
-
-        <div class="md:col-span-3 bento-card">
-            <h3 class="text-xl font-bold mb-4 highlight"><i class="fa-solid fa-credit-card"></i> Key Project: PG 결제 시스템</h3>
-            <p class="text-slate-400 mb-4">알리페이·유니온페이 충전 플로우 및 폴링 구조 설계</p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-                <div class="bg-slate-800 p-3 rounded">결제 콜백 처리 및 검증</div>
-                <div class="bg-slate-800 p-3 rounded">수동 승인/환불 프로세스 구축</div>
-                <div class="bg-slate-800 p-3 rounded">WAF 오탐 방지 파라미터 설계</div>
+        <div class="card group">
+            <div class="aspect-video bg-blue-900 flex items-center justify-center">
+                <p class="text-white font-bold text-lg text-center">DB 성능 최적화<br><span class="text-sm font-normal text-blue-200">응답속도 80% 개선</span></p>
+            </div>
+            <div class="p-6">
+                <h3 class="text-xl font-bold mb-2">Legacy Migration</h3>
+                <p class="text-gray-400 text-sm mb-4">전수 조사를 통한 쿼리 튜닝 및 데이터 마이그레이션</p>
+                <div class="text-xs text-gray-500">MySQL / Oracle / Procedure</div>
             </div>
         </div>
 
-        <div class="md:col-span-3 text-center pt-8">
-            <p class="text-slate-500 text-sm">© 2026 Ew. Built with Laravel & Passion.</p>
+        <div class="card group">
+            <div class="aspect-video bg-slate-700 flex items-center justify-center">
+                 <p class="text-slate-300 font-bold">Docker-compose 배포</p>
+            </div>
+            <div class="p-6">
+                <h3 class="text-xl font-bold mb-2">CI/CD Pipeline</h3>
+                <p class="text-gray-400 text-sm mb-4">컨테이너 기반 환경 구축 및 일일 보고서 자동화</p>
+                <div class="text-xs text-gray-500">Docker / GitHub Actions</div>
+            </div>
         </div>
 
-    </div>
+    </main>
+
+    <footer class="mt-20 text-gray-600 text-xs text-center border-t border-gray-800 pt-8">
+        © 2026 Ew. Backend Developer Portfolio.
+    </footer>
+
+    <script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script>
 </body>
 </html>
