@@ -503,30 +503,20 @@ mobileMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => 
     return window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 120;
   }
 
-  // 마우스 휠
-  window.addEventListener('wheel', (e) => {
-    if (snapping) { e.preventDefault(); return; }
-    const len = getEls().length;
-    if (e.deltaY < -20 && nearBottom()) {
-      e.preventDefault(); snapTo(len - 1);
-    } else if (e.deltaY > 20 && idx < len - 1) {
-      e.preventDefault(); snapTo(idx + 1);
-    } else if (e.deltaY < -20 && idx > 0) {
-      e.preventDefault(); snapTo(idx - 1);
-    }
-  }, { passive: false });
-
-  // 터치 (모바일)
-  let touchY = 0;
-  window.addEventListener('touchstart', e => { touchY = e.touches[0].clientY; }, { passive: true });
-  window.addEventListener('touchmove',  e => { if (snapping) e.preventDefault(); }, { passive: false });
-  window.addEventListener('touchend',   e => {
-    if (snapping) return;
-    const diff = touchY - e.changedTouches[0].clientY;
-    const len  = getEls().length;
-    if (diff > 50)       { if (idx < len - 1) snapTo(idx + 1); }
-    else if (diff < -50) { if (nearBottom()) snapTo(len - 1); else if (idx > 0) snapTo(idx - 1); }
-  });
+  // 마우스 휠 — 터치 디바이스(모바일)는 제외하고 데스크탑만 스냅 적용
+  if (!window.matchMedia('(pointer: coarse)').matches) {
+    window.addEventListener('wheel', (e) => {
+      if (snapping) { e.preventDefault(); return; }
+      const len = getEls().length;
+      if (e.deltaY < -20 && nearBottom()) {
+        e.preventDefault(); snapTo(len - 1);
+      } else if (e.deltaY > 20 && idx < len - 1) {
+        e.preventDefault(); snapTo(idx + 1);
+      } else if (e.deltaY < -20 && idx > 0) {
+        e.preventDefault(); snapTo(idx - 1);
+      }
+    }, { passive: false });
+  }
 })();
 
 // ─── Scroll-reveal ───────────────────────────────────────────────────────────
