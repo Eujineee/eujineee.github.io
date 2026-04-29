@@ -276,6 +276,21 @@
     </div>
   </section>
 
+  <!-- Modal Overlay -->
+  <div id="modal-overlay" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4" onclick="if(event.target===this)closeModal()">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+    <div id="modal-content"
+         class="relative bg-gray-900 border border-gray-700 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-8 z-10">
+    </div>
+  </div>
+
+  <style>
+    #modal-overlay { opacity: 0; transition: opacity 0.25s ease; pointer-events: none; }
+    #modal-overlay.modal-open { opacity: 1; pointer-events: auto; }
+    #modal-overlay > div:last-child { transform: translateY(16px); transition: transform 0.25s ease; }
+    #modal-overlay.modal-open > div:last-child { transform: translateY(0); }
+  </style>
+
   <!-- Footer -->
   <footer class="py-12 px-4 border-t border-gray-800">
     <div class="max-w-4xl mx-auto text-center">
