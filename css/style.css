@@ -1,163 +1,53 @@
-/* Scrollbar */
+/* ── Universal ────────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #030712; }
-::-webkit-scrollbar-thumb { background: #1e3a5f; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
+::-webkit-scrollbar-thumb { border-radius: 3px; }
 
-html:not(.dark) ::-webkit-scrollbar-track { background: #f1f5f9; }
-html:not(.dark) ::-webkit-scrollbar-thumb { background: #94a3b8; }
-html:not(.dark) ::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
+::selection { background: rgba(212,163,115,0.25); color: #D4A373; }
 
-/* Selection */
-::selection { background: #3b82f620; color: #93c5fd; }
-
-/* Navbar scroll effect — JS adds .scrolled */
 #navbar { background: transparent; }
 #navbar.scrolled {
-  background: rgba(3, 7, 18, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Skill badges */
 .skill-badge {
   display: inline-block;
   padding: 0.2rem 0.65rem;
-  background: rgba(30, 41, 59, 0.8);
-  color: #94a3b8;
   font-size: 0.75rem;
   border-radius: 9999px;
-  border: 1px solid rgba(71, 85, 105, 0.4);
+  border: 1px solid;
   transition: all 0.15s ease;
 }
-.skill-badge:hover {
-  background: rgba(37, 99, 235, 0.15);
-  border-color: rgba(59, 130, 246, 0.4);
-  color: #93c5fd;
-}
 
-/* Scroll indicator animation */
 @keyframes scrollBounce {
   0%, 100% { transform: translateY(0); opacity: 1; }
-  50% { transform: translateY(6px); opacity: 0.4; }
+  50%       { transform: translateY(6px); opacity: 0.4; }
 }
 .scroll-dot { animation: scrollBounce 1.8s ease-in-out infinite; }
 .scroll-indicator { position: absolute; }
 
-/* Project card image fallback gradient */
 .project-thumb-placeholder {
-  width: 100%;
-  height: 12rem;
-  background: linear-gradient(135deg, #1e3a5f 0%, #4c1d95 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%; height: 12rem;
+  background: linear-gradient(135deg, #1B3022 0%, #2D5016 100%);
+  display: flex; align-items: center; justify-content: center;
   font-size: 2.5rem;
 }
 
-/* Mobile menu slide */
-#mobile-menu {
-  animation: slideDown 0.2s ease-out;
-}
+#mobile-menu { animation: slideDown 0.2s ease-out; }
 @keyframes slideDown {
   from { opacity: 0; transform: translateY(-8px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Section fade-in on scroll */
-.section-hidden {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.section-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.section-hidden  { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.section-visible { opacity: 1; transform: translateY(0); }
 
-
-/* Smooth theme transition */
-body, #navbar, section, footer {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* ── Light mode overrides ─────────────────────────────────────────────────── */
-html:not(.dark) body { background-color: #f8fafc !important; color: #1e293b !important; }
-
-html:not(.dark) #navbar.scrolled {
-  background: rgba(248, 250, 252, 0.92);
-  border-bottom-color: rgba(0, 0, 0, 0.08);
-}
-
-/* Backgrounds */
-html:not(.dark) .bg-gray-950    { background-color: #f8fafc !important; }
-html:not(.dark) .bg-gray-950\/95 { background-color: rgba(248,250,252,0.96) !important; }
-html:not(.dark) .bg-gray-900    { background-color: #ffffff !important; }
-html:not(.dark) .bg-gray-900\/30 { background-color: rgba(226,232,240,0.4) !important; }
-html:not(.dark) .bg-gray-900\/50 { background-color: rgba(255,255,255,0.8) !important; }
-html:not(.dark) .bg-gray-800    { background-color: #e2e8f0 !important; }
-html:not(.dark) .bg-black\/80   { background-color: rgba(15,23,42,0.55) !important; }
-html:not(.dark) .bg-blue-950    { background-color: #eff6ff !important; }
-html:not(.dark) .bg-purple-950  { background-color: #f5f3ff !important; }
-
-/* Borders */
-html:not(.dark) .border-gray-800 { border-color: #e2e8f0 !important; }
-html:not(.dark) .border-gray-700 { border-color: #cbd5e1 !important; }
-html:not(.dark) .border-gray-600 { border-color: #94a3b8 !important; }
-
-/* Card hover borders (lighter in light mode) */
-html:not(.dark) .hover\:border-blue-800:hover   { border-color: #93c5fd !important; }
-html:not(.dark) .hover\:border-purple-800:hover { border-color: #c4b5fd !important; }
-html:not(.dark) .hover\:border-green-800:hover  { border-color: #86efac !important; }
-html:not(.dark) .hover\:border-orange-800:hover { border-color: #fdba74 !important; }
-
-/* Text */
-html:not(.dark) .text-white   { color: #0f172a !important; }
-html:not(.dark) .text-gray-100 { color: #1e293b !important; }
-html:not(.dark) .text-gray-300 { color: #334155 !important; }
-html:not(.dark) .text-gray-400 { color: #475569 !important; }
-html:not(.dark) .text-gray-500 { color: #64748b !important; }
-html:not(.dark) .text-gray-700 { color: #94a3b8 !important; }
-
-/* Accent colors — darker shades for readability on light bg */
-html:not(.dark) .text-blue-400   { color: #2563eb !important; }
-html:not(.dark) .text-purple-400 { color: #7c3aed !important; }
-html:not(.dark) .text-green-400  { color: #16a34a !important; }
-html:not(.dark) .text-orange-400 { color: #ea580c !important; }
-
-/* Nav links */
-html:not(.dark) .nav-link       { color: #475569 !important; }
-html:not(.dark) .nav-link:hover { color: #0f172a !important; }
-
-/* Mobile nav links */
-html:not(.dark) #mobile-menu a { color: #334155 !important; }
-html:not(.dark) #mobile-menu a:hover { color: #0f172a !important; }
-
-/* Skill badges */
-html:not(.dark) .skill-badge {
-  background: rgba(241, 245, 249, 0.9);
-  color: #475569;
-  border-color: rgba(148, 163, 184, 0.5);
-}
-html:not(.dark) .skill-badge:hover {
-  background: rgba(219, 234, 254, 0.6);
-  border-color: rgba(59, 130, 246, 0.5);
-  color: #1d4ed8;
-}
-
-/* Timeline dot ring */
-html:not(.dark) .ring-gray-950 { --tw-ring-color: #f8fafc !important; }
-
-/* GitHub / ghost button hover — prevent white text on transparent bg */
-html:not(.dark) a[href*="github"]:hover { color: #0f172a !important; }
-html:not(.dark) footer a:hover { color: #0f172a !important; }
+body, #navbar, section, footer { transition: background-color 0.3s ease, color 0.3s ease; }
 
 /* ── CTA 버튼 ─────────────────────────────────────────────────────────────── */
 .btn-cta::before {
   content: '';
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%);
   transform: translateX(-110%);
   transition: transform 0.55s ease;
@@ -165,4 +55,195 @@ html:not(.dark) footer a:hover { color: #0f172a !important; }
   pointer-events: none;
 }
 .btn-cta:hover::before { transform: translateX(110%); }
-html:not(.dark) .btn-cta { color: #ffffff !important; }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   DARK MODE — Deep Forest
+   ════════════════════════════════════════════════════════════════════════════ */
+html.dark body { background-color: #0F1E14 !important; color: #FEFAE0 !important; }
+
+html.dark #navbar.scrolled {
+  background: rgba(15,30,20,0.9);
+  border-bottom: 1px solid rgba(212,163,115,0.15);
+}
+
+/* Backgrounds */
+html.dark .bg-gray-950      { background-color: #0F1E14 !important; }
+html.dark .bg-gray-950\/95  { background-color: rgba(15,30,20,0.96) !important; }
+html.dark .bg-gray-900      { background-color: #1B3022 !important; }
+html.dark .bg-gray-900\/30  { background-color: rgba(27,48,34,0.35) !important; }
+html.dark .bg-gray-900\/50  { background-color: rgba(27,48,34,0.55) !important; }
+html.dark .bg-gray-800      { background-color: #263D2C !important; }
+html.dark .bg-blue-950      { background-color: #0D2518 !important; }
+html.dark .bg-purple-950    { background-color: #112218 !important; }
+
+/* Borders */
+html.dark .border-gray-800  { border-color: #2A4030 !important; }
+html.dark .border-gray-700  { border-color: #344E38 !important; }
+html.dark .border-gray-600  { border-color: #456048 !important; }
+html.dark .hover\:border-blue-800:hover   { border-color: #D4A373 !important; }
+html.dark .hover\:border-purple-800:hover { border-color: #C49060 !important; }
+html.dark .hover\:border-green-800:hover  { border-color: #6AAF70 !important; }
+html.dark .hover\:border-orange-800:hover { border-color: #D4A373 !important; }
+
+/* Text */
+html.dark .text-white    { color: #FEFAE0 !important; }
+html.dark .text-gray-100 { color: #FEFAE0 !important; }
+html.dark .text-gray-300 { color: #D4C9A0 !important; }
+html.dark .text-gray-400 { color: #A8B5A0 !important; }
+html.dark .text-gray-500 { color: #7A9080 !important; }
+html.dark .text-gray-700 { color: #4A6050 !important; }
+
+/* Accent → Sand */
+html.dark .text-blue-400      { color: #D4A373 !important; }
+html.dark .text-blue-400\/80  { color: rgba(212,163,115,0.8) !important; }
+html.dark .text-purple-400    { color: #C49060 !important; }
+html.dark .text-green-400     { color: #7CBF7A !important; }
+html.dark .text-orange-400    { color: #D4A373 !important; }
+
+/* Dots / icons */
+html.dark .bg-blue-500   { background-color: #D4A373 !important; }
+html.dark .bg-purple-500 { background-color: #C49060 !important; }
+html.dark .bg-blue-400   { background-color: #D4A373 !important; }
+
+/* Contact 버튼 */
+html.dark .border-blue-500         { border-color: #D4A373 !important; }
+html.dark .hover\:bg-blue-500:hover { background-color: #D4A373 !important; }
+
+/* Hero 그라디언트 텍스트 */
+html.dark .from-blue-400 { --tw-gradient-from: #D4A373 !important; }
+html.dark .to-purple-500 { --tw-gradient-to:   #C49060 !important; }
+
+/* Timeline dot ring */
+html.dark .ring-gray-950 { --tw-ring-color: #0F1E14 !important; }
+
+/* Skill badges */
+html.dark .skill-badge {
+  background: rgba(27,48,34,0.8);
+  color: #A8B5A0;
+  border-color: rgba(42,64,48,0.55);
+}
+html.dark .skill-badge:hover {
+  background: rgba(212,163,115,0.15);
+  border-color: rgba(212,163,115,0.4);
+  color: #D4A373;
+}
+
+/* CTA 버튼 — Sand gradient */
+html.dark .btn-cta {
+  background-image: linear-gradient(to right, #D4A373, #C49060) !important;
+  color: #1B3022 !important;
+}
+html.dark .btn-cta:hover {
+  color: #1B3022 !important;
+  box-shadow: 0 20px 40px -8px rgba(212,163,115,0.45) !important;
+}
+
+/* Scrollbar */
+html.dark ::-webkit-scrollbar-track { background: #0F1E14; }
+html.dark ::-webkit-scrollbar-thumb { background: #2A4030; }
+html.dark ::-webkit-scrollbar-thumb:hover { background: #D4A373; }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   LIGHT MODE — Warm Cream
+   ════════════════════════════════════════════════════════════════════════════ */
+html:not(.dark) body { background-color: #FEFAE0 !important; color: #1B3022 !important; }
+
+html:not(.dark) #navbar.scrolled {
+  background: rgba(254,250,224,0.93);
+  border-bottom: 1px solid rgba(27,48,34,0.1);
+}
+
+/* Backgrounds */
+html:not(.dark) .bg-gray-950      { background-color: #FEFAE0 !important; }
+html:not(.dark) .bg-gray-950\/95  { background-color: rgba(254,250,224,0.96) !important; }
+html:not(.dark) .bg-gray-900      { background-color: #FFFFFF !important; }
+html:not(.dark) .bg-gray-900\/30  { background-color: rgba(212,163,115,0.08) !important; }
+html:not(.dark) .bg-gray-900\/50  { background-color: rgba(255,255,255,0.85) !important; }
+html:not(.dark) .bg-gray-800      { background-color: #E8DFC8 !important; }
+html:not(.dark) .bg-black\/80     { background-color: rgba(27,48,34,0.65) !important; }
+html:not(.dark) .bg-blue-950      { background-color: #F5EDD8 !important; }
+html:not(.dark) .bg-purple-950    { background-color: #F5EDD8 !important; }
+
+/* Borders */
+html:not(.dark) .border-gray-800  { border-color: #DDD5BC !important; }
+html:not(.dark) .border-gray-700  { border-color: #CCC4A8 !important; }
+html:not(.dark) .border-gray-600  { border-color: #B8B098 !important; }
+html:not(.dark) .hover\:border-blue-800:hover   { border-color: #D4A373 !important; }
+html:not(.dark) .hover\:border-purple-800:hover { border-color: #C49060 !important; }
+html:not(.dark) .hover\:border-green-800:hover  { border-color: #4A8050 !important; }
+html:not(.dark) .hover\:border-orange-800:hover { border-color: #D4A373 !important; }
+
+/* Text */
+html:not(.dark) .text-white    { color: #1B3022 !important; }
+html:not(.dark) .text-gray-100 { color: #1B3022 !important; }
+html:not(.dark) .text-gray-300 { color: #2D4B35 !important; }
+html:not(.dark) .text-gray-400 { color: #3D5A42 !important; }
+html:not(.dark) .text-gray-500 { color: #5A7860 !important; }
+html:not(.dark) .text-gray-700 { color: #8B9D88 !important; }
+
+/* Accent → Dark Sand / Forest */
+html:not(.dark) .text-blue-400      { color: #8B6420 !important; }
+html:not(.dark) .text-blue-400\/80  { color: rgba(139,100,32,0.8) !important; }
+html:not(.dark) .text-purple-400    { color: #7A5818 !important; }
+html:not(.dark) .text-green-400     { color: #2D6B35 !important; }
+html:not(.dark) .text-orange-400    { color: #8B6420 !important; }
+
+/* Dots / icons */
+html:not(.dark) .bg-blue-500   { background-color: #1B3022 !important; }
+html:not(.dark) .bg-purple-500 { background-color: #2D5016 !important; }
+html:not(.dark) .bg-blue-400   { background-color: #D4A373 !important; }
+
+/* Contact 버튼 */
+html:not(.dark) .border-blue-500          { border-color: #1B3022 !important; }
+html:not(.dark) .hover\:bg-blue-500:hover { background-color: #1B3022 !important; }
+
+/* Hero 그라디언트 텍스트 */
+html:not(.dark) .from-blue-400 { --tw-gradient-from: #1B3022 !important; }
+html:not(.dark) .to-purple-500 { --tw-gradient-to:   #4A7C50 !important; }
+
+/* Timeline dot ring */
+html:not(.dark) .ring-gray-950 { --tw-ring-color: #FEFAE0 !important; }
+
+/* Nav links */
+html:not(.dark) .nav-link       { color: #3D5A42 !important; }
+html:not(.dark) .nav-link:hover { color: #1B3022 !important; }
+
+html:not(.dark) #mobile-menu a       { color: #2D4B35 !important; }
+html:not(.dark) #mobile-menu a:hover { color: #1B3022 !important; }
+
+/* Skill badges */
+html:not(.dark) .skill-badge {
+  background: rgba(212,163,115,0.12);
+  color: #4A6050;
+  border-color: rgba(212,163,115,0.38);
+}
+html:not(.dark) .skill-badge:hover {
+  background: rgba(212,163,115,0.25);
+  border-color: rgba(212,163,115,0.6);
+  color: #8B6420;
+}
+
+/* CTA 버튼 — Forest gradient */
+html:not(.dark) .btn-cta {
+  background-image: linear-gradient(to right, #1B3022, #2D5016) !important;
+  color: #FEFAE0 !important;
+}
+html:not(.dark) .btn-cta:hover {
+  color: #FEFAE0 !important;
+  box-shadow: 0 20px 40px -8px rgba(27,48,34,0.4) !important;
+}
+
+/* Featured 배지 — 컬러 배경 위 흰 텍스트 항상 고정 */
+html:not(.dark) .bg-blue-600.text-white,
+html:not(.dark) .bg-purple-600.text-white,
+html:not(.dark) .bg-green-600.text-white,
+html:not(.dark) .bg-orange-600.text-white { color: #ffffff !important; }
+
+/* Hover — ghost 버튼·footer 링크 */
+html:not(.dark) a[href*="notion"]:hover { color: #1B3022 !important; }
+html:not(.dark) footer a:hover          { color: #1B3022 !important; }
+
+/* Scrollbar */
+html:not(.dark) ::-webkit-scrollbar-track { background: #FEFAE0; }
+html:not(.dark) ::-webkit-scrollbar-thumb { background: #D4A373; }
+html:not(.dark) ::-webkit-scrollbar-thumb:hover { background: #C49060; }

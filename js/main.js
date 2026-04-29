@@ -1,8 +1,8 @@
-// Flash 방지: DOM 파싱 전에 저장된 테마 복원
+// Flash 방지: DOM 파싱 전에 저장된 테마 복원 (기본값: light)
 (function () {
   const saved = localStorage.getItem('theme');
-  if (saved === 'light') document.documentElement.classList.remove('dark');
-  else document.documentElement.classList.add('dark');
+  if (saved === 'dark') document.documentElement.classList.add('dark');
+  else document.documentElement.classList.remove('dark');
 })();
 
 // ─────────────────────────────────────────────────────────────────────────────
