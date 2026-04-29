@@ -1,125 +1,110 @@
-// ─── API 설정 ────────────────────────────────────────────────────────────────
-// 로컬 개발: http://localhost:8000/api/projects
-// 운영 배포: Oracle 서버 주소로 교체
-const API_URL = 'http://localhost:8000/api/projects';
+// ─── Projects 데이터 (하드코딩) ─────────────────────────────────────────────
+const PROJECTS = [
+  {
+    title: "Alipay · UnionPay PG 연동",
+    description: "중국 현지 결제 수단을 레거시 PHP 플랫폼에 완전 통합. 멱등 콜백·행 잠금 기반 동시성 제어·환율 스냅샷 등 결제 안정성 설계 전 구간 단독 담당. 7개 엣지케이스 단계적 추적·해결.",
+    tech_stack: ["PHP", "MySQL", "jQuery", "AronHub API", "Alipay", "UnionPay"],
+    icon: "💳",
+    color: "blue",
+    is_featured: true,
+  },
+  {
+    title: "패밀리컴코 B2C 플랫폼 런칭",
+    description: "B2B 중심 비즈니스의 B2C 전환을 위한 신규 커머스 플랫폼을 Zero-to-One으로 단독 설계·개발·런칭. DB 설계부터 메인·마이페이지·고객센터·관리자 백오피스까지 3개월 내 완성.",
+    tech_stack: ["PHP", "CodeIgniter3", "MySQL", "MSSQL", "jQuery", "Template Engine"],
+    icon: "🏪",
+    color: "purple",
+    is_featured: true,
+  },
+  {
+    title: "AI 이미지 자동생성 시스템",
+    description: "Python FastAPI 기반 이벤트 배너 자동생성 + 배경제거 기능 개발. 마케팅 디자인 업무 효율 80% 향상. 기존 수작업 프로세스를 AI 파이프라인으로 완전 대체.",
+    tech_stack: ["Python", "FastAPI", "OpenAI API", "Docker", "Image Processing"],
+    icon: "🤖",
+    color: "green",
+    is_featured: true,
+  },
+  {
+    title: "랜딩 이벤트 통합 자동화",
+    description: "하드코딩 기반 이벤트 페이지 제작을 배경·상품·레이아웃 설정만으로 즉시 생성되는 템플릿 엔진으로 전환. 운영팀이 개발자 없이 독립 대응 가능한 구조로 리드타임 대폭 단축.",
+    tech_stack: ["PHP", "CodeIgniter3", "MySQL", "jQuery", "JavaScript"],
+    icon: "🔁",
+    color: "orange",
+  },
+  {
+    title: "상품 일괄 등록 프로세스",
+    description: "수동 등록을 엑셀 업로드 + 코드 검색 팝업으로 대체. '실수를 구조적으로 막는' 설계로 오입력 원천 차단 및 등록 업무 시간 획기적 단축.",
+    tech_stack: ["PHP", "CodeIgniter3", "MySQL", "MSSQL", "jQuery", "Excel Parsing"],
+    icon: "⚡",
+    color: "blue",
+  },
+  {
+    title: "AI 검색 고도화 (Vector DB + LLM)",
+    description: "Vector DB + Dify LLM 연동으로 의미 기반 검색 구축. 키워드 불일치로 인한 검색 실패 개선, 동의어·유의어 포함 검색 커버리지 확장. OpenAI Vision API 활용 OCR 시스템 아키텍처 설계.",
+    tech_stack: ["Python", "Vector DB", "Dify LLM", "OpenAI API", "FastAPI"],
+    icon: "🔍",
+    color: "purple",
+  },
+  {
+    title: "컴퓨터코리아 채널톡 AI 상담",
+    description: "채널톡 AI톡 연동으로 24/7 자동 응대 체계 마련. 방대한 API 문서를 단기간 분석해 기존 서비스와 충돌 없이 구축. CS팀 독립 운영을 위한 PPT 매뉴얼 직접 작성·배포.",
+    tech_stack: ["PHP", "MySQL", "jQuery", "RESTful API", "채널톡"],
+    icon: "💬",
+    color: "green",
+  },
+  {
+    title: "물품공급계약서 접근 제어 시스템",
+    description: "미서명 협력사 서비스 이용 100% 차단 로직 구현. 비즈니스 정책을 예외 상황 없이 시스템으로 강제. 가변 계약서 관리 구조 + 협력사 현황 대시보드 구축. MSSQL·MySQL 이종 DB 연동.",
+    tech_stack: ["PHP", "CodeIgniter3", "MySQL", "MSSQL", "Template Engine"],
+    icon: "🔒",
+    color: "orange",
+  },
+  {
+    title: "컴퓨터코리아 리뉴얼",
+    description: "비효율적인 배너·콘텐츠 관리 프로세스 제거. 데이터 자동 매핑 모달로 수동 오입력 원천 차단. 코드 수정 없이 신규 배너 타입을 수용하는 확장 가능한 DB 구조로 개편.",
+    tech_stack: ["PHP", "CodeIgniter3", "MySQL", "MSSQL", "jQuery"],
+    icon: "🔄",
+    color: "blue",
+  },
+];
 
-// ─── Projects Fetch ──────────────────────────────────────────────────────────
-async function fetchProjects() {
-  const container = document.getElementById('projects-container');
-  const loading   = document.getElementById('projects-loading');
-  const errorBox  = document.getElementById('projects-error');
-  const errorMsg  = document.getElementById('projects-error-msg');
-
-  // 상태 초기화
-  container.innerHTML = '';
-  errorBox.classList.add('hidden');
-  loading.classList.remove('hidden');
-
-  try {
-    const response = await fetch(API_URL, {
-      method: 'GET',
-      mode: 'cors',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`서버 오류: ${response.status} ${response.statusText}`);
-    }
-
-    const json = await response.json();
-    const projects = json.data ?? [];
-
-    loading.classList.add('hidden');
-    renderProjects(projects, container);
-  } catch (err) {
-    loading.classList.add('hidden');
-    errorMsg.textContent = err.message || '알 수 없는 오류가 발생했습니다.';
-    errorBox.classList.remove('hidden');
-    console.error('[Projects] fetch 실패:', err);
-  }
-}
+const COLOR_MAP = {
+  blue:   { border: "hover:border-blue-700",   badge: "bg-blue-950 text-blue-400",   dot: "text-blue-400",   featured: "bg-blue-600" },
+  purple: { border: "hover:border-purple-700", badge: "bg-purple-950 text-purple-400", dot: "text-purple-400", featured: "bg-purple-600" },
+  green:  { border: "hover:border-green-700",  badge: "bg-green-950 text-green-400",  dot: "text-green-400",  featured: "bg-green-600" },
+  orange: { border: "hover:border-orange-700", badge: "bg-orange-950 text-orange-400", dot: "text-orange-400", featured: "bg-orange-600" },
+};
 
 // ─── 렌더링 ──────────────────────────────────────────────────────────────────
-function renderProjects(projects, container) {
-  if (!projects.length) {
-    container.innerHTML = `
-      <div class="col-span-full text-center py-16">
-        <p class="text-4xl mb-4">📂</p>
-        <p class="text-gray-500">등록된 프로젝트가 없습니다.</p>
+function renderProjects() {
+  const container = document.getElementById('projects-container');
+  if (!container) return;
+
+  container.innerHTML = PROJECTS.map((p, i) => {
+    const c = COLOR_MAP[p.color] || COLOR_MAP.blue;
+    const techBadges = (p.tech_stack || [])
+      .map(t => `<span class="skill-badge">${esc(t)}</span>`)
+      .join('');
+    const featuredBadge = p.is_featured
+      ? `<span class="absolute top-3 right-3 px-2 py-0.5 text-xs ${c.featured} text-white rounded-full font-medium">Featured</span>`
+      : '';
+
+    return `
+      <div class="project-card relative bg-gray-900 rounded-2xl overflow-hidden border border-gray-800
+                  ${c.border} transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-900/20
+                  animate-fade-in"
+           style="animation-delay:${i * 80}ms">
+        <div class="relative p-8 pb-4 flex items-center justify-between">
+          <span class="text-4xl">${p.icon}</span>
+          ${featuredBadge}
+        </div>
+        <div class="px-6 pb-6">
+          <h3 class="text-lg font-semibold text-white mb-2">${esc(p.title)}</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4">${esc(p.description)}</p>
+          <div class="flex flex-wrap gap-2">${techBadges}</div>
+        </div>
       </div>`;
-    return;
-  }
-
-  container.innerHTML = projects.map(project => projectCard(project)).join('');
-
-  // 카드에 페이드인 애니메이션 적용
-  container.querySelectorAll('.project-card').forEach((card, i) => {
-    card.style.animationDelay = `${i * 80}ms`;
-    card.classList.add('animate-fade-in');
-  });
-}
-
-function projectCard(project) {
-  const thumb = project.thumbnail
-    ? `<img src="${esc(project.thumbnail)}" alt="${esc(project.title)}"
-            class="w-full h-48 object-cover"
-            onerror="this.replaceWith(thumbPlaceholder())">`
-    : `<div class="project-thumb-placeholder">🚀</div>`;
-
-  const techBadges = (project.tech_stack ?? [])
-    .map(t => `<span class="skill-badge">${esc(t)}</span>`)
-    .join('');
-
-  const links = [
-    project.github_url
-      ? `<a href="${esc(project.github_url)}" target="_blank" rel="noopener noreferrer"
-            class="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-1">
-           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-           </svg>
-           GitHub
-         </a>`
-      : '',
-    project.demo_url
-      ? `<a href="${esc(project.demo_url)}" target="_blank" rel="noopener noreferrer"
-            class="text-sm text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1">
-           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                   d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-           </svg>
-           Demo
-         </a>`
-      : '',
-  ].filter(Boolean).join('');
-
-  const featuredBadge = project.is_featured
-    ? `<span class="absolute top-3 right-3 px-2 py-0.5 text-xs bg-blue-600 text-white rounded-full font-medium">Featured</span>`
-    : '';
-
-  return `
-    <div class="project-card relative bg-gray-900 rounded-2xl overflow-hidden border border-gray-800
-                hover:border-blue-700 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-900/20">
-      <div class="relative overflow-hidden">
-        ${thumb}
-        ${featuredBadge}
-      </div>
-      <div class="p-6">
-        <h3 class="text-lg font-semibold text-white mb-2">${esc(project.title)}</h3>
-        <p class="text-gray-400 text-sm leading-relaxed mb-4">${esc(project.description)}</p>
-        <div class="flex flex-wrap gap-2 mb-4">${techBadges}</div>
-        <div class="flex items-center gap-4">${links}</div>
-      </div>
-    </div>`;
-}
-
-function thumbPlaceholder() {
-  const div = document.createElement('div');
-  div.className = 'project-thumb-placeholder';
-  div.textContent = '🚀';
-  return div;
+  }).join('');
 }
 
 // XSS 방어
@@ -137,19 +122,17 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 // ─── 모바일 메뉴 토글 ────────────────────────────────────────────────────────
-const mobileMenuBtn  = document.getElementById('mobile-menu-btn');
-const mobileMenu     = document.getElementById('mobile-menu');
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu    = document.getElementById('mobile-menu');
 
 mobileMenuBtn.addEventListener('click', () => {
   mobileMenu.classList.toggle('hidden');
 });
-
-// 모바일 메뉴 링크 클릭 시 닫기
 mobileMenu.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
 });
 
-// ─── Scroll-reveal 애니메이션 ────────────────────────────────────────────────
+// ─── Scroll-reveal ───────────────────────────────────────────────────────────
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach(entry => {
@@ -161,11 +144,10 @@ const observer = new IntersectionObserver(
   },
   { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
 );
-
 document.querySelectorAll('section').forEach(section => {
   section.classList.add('section-hidden');
   observer.observe(section);
 });
 
 // ─── 초기화 ──────────────────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', fetchProjects);
+document.addEventListener('DOMContentLoaded', renderProjects);
