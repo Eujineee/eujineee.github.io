@@ -4,6 +4,10 @@
 ::-webkit-scrollbar-thumb { background: #1e3a5f; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
 
+html:not(.dark) ::-webkit-scrollbar-track { background: #f1f5f9; }
+html:not(.dark) ::-webkit-scrollbar-thumb { background: #94a3b8; }
+html:not(.dark) ::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
+
 /* Selection */
 ::selection { background: #3b82f620; color: #93c5fd; }
 
@@ -71,3 +75,94 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+
+/* Smooth theme transition */
+body, #navbar, section, footer {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ── Light mode overrides ─────────────────────────────────────────────────── */
+html:not(.dark) body { background-color: #f8fafc !important; color: #1e293b !important; }
+
+html:not(.dark) #navbar.scrolled {
+  background: rgba(248, 250, 252, 0.92);
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Backgrounds */
+html:not(.dark) .bg-gray-950    { background-color: #f8fafc !important; }
+html:not(.dark) .bg-gray-950\/95 { background-color: rgba(248,250,252,0.96) !important; }
+html:not(.dark) .bg-gray-900    { background-color: #ffffff !important; }
+html:not(.dark) .bg-gray-900\/30 { background-color: rgba(226,232,240,0.4) !important; }
+html:not(.dark) .bg-gray-900\/50 { background-color: rgba(255,255,255,0.8) !important; }
+html:not(.dark) .bg-gray-800    { background-color: #e2e8f0 !important; }
+html:not(.dark) .bg-black\/80   { background-color: rgba(15,23,42,0.55) !important; }
+html:not(.dark) .bg-blue-950    { background-color: #eff6ff !important; }
+html:not(.dark) .bg-purple-950  { background-color: #f5f3ff !important; }
+
+/* Borders */
+html:not(.dark) .border-gray-800 { border-color: #e2e8f0 !important; }
+html:not(.dark) .border-gray-700 { border-color: #cbd5e1 !important; }
+html:not(.dark) .border-gray-600 { border-color: #94a3b8 !important; }
+
+/* Card hover borders (lighter in light mode) */
+html:not(.dark) .hover\:border-blue-800:hover   { border-color: #93c5fd !important; }
+html:not(.dark) .hover\:border-purple-800:hover { border-color: #c4b5fd !important; }
+html:not(.dark) .hover\:border-green-800:hover  { border-color: #86efac !important; }
+html:not(.dark) .hover\:border-orange-800:hover { border-color: #fdba74 !important; }
+
+/* Text */
+html:not(.dark) .text-white   { color: #0f172a !important; }
+html:not(.dark) .text-gray-100 { color: #1e293b !important; }
+html:not(.dark) .text-gray-300 { color: #334155 !important; }
+html:not(.dark) .text-gray-400 { color: #475569 !important; }
+html:not(.dark) .text-gray-500 { color: #64748b !important; }
+html:not(.dark) .text-gray-700 { color: #94a3b8 !important; }
+
+/* Accent colors — darker shades for readability on light bg */
+html:not(.dark) .text-blue-400   { color: #2563eb !important; }
+html:not(.dark) .text-purple-400 { color: #7c3aed !important; }
+html:not(.dark) .text-green-400  { color: #16a34a !important; }
+html:not(.dark) .text-orange-400 { color: #ea580c !important; }
+
+/* Nav links */
+html:not(.dark) .nav-link       { color: #475569 !important; }
+html:not(.dark) .nav-link:hover { color: #0f172a !important; }
+
+/* Mobile nav links */
+html:not(.dark) #mobile-menu a { color: #334155 !important; }
+html:not(.dark) #mobile-menu a:hover { color: #0f172a !important; }
+
+/* Skill badges */
+html:not(.dark) .skill-badge {
+  background: rgba(241, 245, 249, 0.9);
+  color: #475569;
+  border-color: rgba(148, 163, 184, 0.5);
+}
+html:not(.dark) .skill-badge:hover {
+  background: rgba(219, 234, 254, 0.6);
+  border-color: rgba(59, 130, 246, 0.5);
+  color: #1d4ed8;
+}
+
+/* Timeline dot ring */
+html:not(.dark) .ring-gray-950 { --tw-ring-color: #f8fafc !important; }
+
+/* GitHub / ghost button hover — prevent white text on transparent bg */
+html:not(.dark) a[href*="github"]:hover { color: #0f172a !important; }
+html:not(.dark) footer a:hover { color: #0f172a !important; }
+
+/* ── CTA 버튼 ─────────────────────────────────────────────────────────────── */
+.btn-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%);
+  transform: translateX(-110%);
+  transition: transform 0.55s ease;
+  border-radius: 9999px;
+  pointer-events: none;
+}
+.btn-cta:hover::before { transform: translateX(110%); }
+html:not(.dark) .btn-cta { color: #ffffff !important; }

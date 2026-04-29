@@ -45,6 +45,18 @@
           <a href="#skills" class="nav-link text-sm text-gray-400 hover:text-white transition-colors">Skills</a>
           <a href="#experience" class="nav-link text-sm text-gray-400 hover:text-white transition-colors">Experience</a>
           <a href="#projects" class="nav-link text-sm text-gray-400 hover:text-white transition-colors">Projects</a>
+          <button id="theme-toggle" onclick="toggleTheme()"
+                  class="p-1.5 text-gray-400 hover:text-white transition-colors rounded-lg"
+                  title="테마 변경">
+            <svg id="icon-sun" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/>
+            </svg>
+            <svg id="icon-moon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"/>
+            </svg>
+          </button>
           <a href="mailto:jin9192000@naver.com"
              class="px-4 py-1.5 text-sm border border-blue-500 text-blue-400 rounded-full hover:bg-blue-500 hover:text-white transition-all duration-200">
             Contact
@@ -64,6 +76,10 @@
         <a href="#experience" class="block text-gray-300 hover:text-white py-2 transition-colors">Experience</a>
         <a href="#projects" class="block text-gray-300 hover:text-white py-2 transition-colors">Projects</a>
         <a href="mailto:jin9192000@naver.com" class="block text-blue-400 py-2">Contact ↗</a>
+        <button onclick="toggleTheme()"
+                class="flex items-center gap-2 text-gray-300 py-2 transition-colors text-sm">
+          <span id="mobile-theme-label">☀ 라이트 모드</span>
+        </button>
       </div>
     </div>
   </nav>
@@ -76,21 +92,30 @@
         Hi, I'm <span class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Eujin</span>
       </h1>
       <p class="text-xl sm:text-2xl text-gray-400 mb-4 font-light">
-        두루미 개발자 이유진
+        기능을 만드는 게 아니라, <strong class="text-white font-medium">문제를 없애는</strong> 개발자
       </p>
       <p class="text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-        이커머스 도메인 3년 이상의 풀스택 경험 보유.<br>
-        하드코딩 대신 <strong class="text-gray-300">운영이 지속 가능한 구조</strong>를 만들고,<br>
-        기술이 <strong class="text-gray-300">실제 비즈니스 성과</strong>로 이어지는 개발을 지향합니다.
+        이커머스 플랫폼 런칭부터 결제 시스템·AI 서비스까지,<br>
+        <strong class="text-gray-300">단독으로 설계하고 끝까지 책임진</strong> 프로젝트들을 만들어왔습니다.<br>
+        <span class="text-blue-400/80">반복 업무를 없애고, 실수가 불가능한 구조를 만들고,<br>
+        운영팀이 개발자 없이도 돌아가는 시스템</span>을 짓는 걸 좋아합니다.
       </p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
         <a href="#projects"
-           class="px-8 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-medium transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-500/25">
-          Projects 보기
+           class="btn-cta group relative overflow-hidden px-8 py-3 rounded-full font-medium transition-all duration-300
+                  bg-gradient-to-r from-blue-600 to-purple-600 text-white
+                  hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-600/40">
+          <span class="relative z-10 flex items-center gap-2">
+            Projects 보기
+            <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+                 fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
+            </svg>
+          </span>
         </a>
-        <a href="https://github.com/eujineee" target="_blank" rel="noopener noreferrer"
+        <a href="https://easy-jam-d4c.notion.site/PORTFOLIO-15796ca679e3804cb80bfcd5fc0ebf31?source=copy_link" target="_blank" rel="noopener noreferrer"
            class="px-8 py-3 border border-gray-700 hover:border-gray-500 text-gray-300 hover:text-white rounded-full font-medium transition-all duration-200">
-          GitHub 방문 ↗
+          Notion 포트폴리오 ↗
         </a>
       </div>
       <div class="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator">
@@ -112,37 +137,43 @@
         <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800 hover:border-blue-800 transition-colors">
           <div class="text-2xl mb-3">🔁</div>
           <h3 class="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">작업 스타일</h3>
-          <p class="text-gray-400 text-sm leading-relaxed">기존 시스템 갭 분석 후 착수. 버그 발견 시 전수 조사 후 일괄 처리. 실서버 작업 시 영향 범위 파악 후 변경 범위 최소화.</p>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            새 기능 개발 전 기존 시스템을 먼저 뜯어봅니다. 버그 하나를 발견하면 같은 패턴이 시스템 전체에 있는지 전수 조사하고 일괄 처리합니다. 실서버 작업은 항상 영향 범위를 먼저 파악하고 변경 범위를 최소화합니다.
+          </p>
         </div>
         <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800 hover:border-purple-800 transition-colors">
           <div class="text-2xl mb-3">⚙️</div>
           <h3 class="text-sm font-semibold text-purple-400 uppercase tracking-wider mb-3">기술적 특징</h3>
-          <p class="text-gray-400 text-sm leading-relaxed">레거시 PHP 점진적 현대화. 이종 DB 동시 운영. 결제 PG 풀사이클 경험 (Alipay·UnionPay). 보안 설계 내재화.</p>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            레거시 PHP를 서비스 중단 없이 점진적으로 개선해왔고, MySQL·MSSQL 이종 DB를 동시에 운영한 경험이 있습니다. Alipay·UnionPay 결제 풀사이클을 단독으로 구현했고, 보안은 설계 단계부터 고려합니다.
+          </p>
         </div>
         <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800 hover:border-green-800 transition-colors">
           <div class="text-2xl mb-3">💬</div>
-          <h3 class="text-sm font-semibold text-green-400 uppercase tracking-wider mb-3">커뮤니케이션</h3>
-          <p class="text-gray-400 text-sm leading-relaxed">기획 판단이 빠르고 결정 후 번복 최소화. 기능 동작뿐 아니라 UX까지 함께 고려. 필요한 것만 정확하게.</p>
+          <h3 class="text-sm font-semibold text-green-400 uppercase tracking-wider mb-3">함께 일하면</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            요구사항의 모호한 부분을 먼저 짚고 시작해서 중간에 방향이 바뀌는 일을 줄입니다. 기능이 동작하는 것뿐 아니라 사용자가 어떻게 읽고 쓰는지까지 함께 고민합니다.
+          </p>
         </div>
       </div>
 
       <!-- 주요 성과 수치 -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
         <div class="bg-gray-900/50 rounded-xl p-5 border border-gray-800 text-center">
-          <p class="text-3xl font-bold text-blue-400 mb-1">3년+</p>
-          <p class="text-xs text-gray-500">이커머스 풀스택</p>
+          <p class="text-3xl font-bold text-blue-400 mb-1">9개</p>
+          <p class="text-xs text-gray-500">프로젝트 단독 설계·개발</p>
         </div>
         <div class="bg-gray-900/50 rounded-xl p-5 border border-gray-800 text-center">
           <p class="text-3xl font-bold text-purple-400 mb-1">80%</p>
-          <p class="text-xs text-gray-500">디자인 업무 효율화</p>
+          <p class="text-xs text-gray-500">AI 도입으로 디자인 업무 단축</p>
         </div>
         <div class="bg-gray-900/50 rounded-xl p-5 border border-gray-800 text-center">
-          <p class="text-3xl font-bold text-green-400 mb-1">7개</p>
-          <p class="text-xs text-gray-500">결제 엣지케이스 해결</p>
+          <p class="text-3xl font-bold text-green-400 mb-1">3개월</p>
+          <p class="text-xs text-gray-500">B2C 플랫폼 Zero-to-One 런칭</p>
         </div>
         <div class="bg-gray-900/50 rounded-xl p-5 border border-gray-800 text-center">
-          <p class="text-3xl font-bold text-orange-400 mb-1">0건</p>
-          <p class="text-xs text-gray-500">배포 후 롤백</p>
+          <p class="text-3xl font-bold text-orange-400 mb-1">100%</p>
+          <p class="text-xs text-gray-500">협력사 계약 미체결 접근 차단</p>
         </div>
       </div>
     </div>
@@ -165,8 +196,8 @@
             <span class="skill-badge">Python</span>
             <span class="skill-badge">FastAPI</span>
             <span class="skill-badge">ASP.NET</span>
-            <span class="skill-badge">Spring</span>
-            <span class="skill-badge">REST API</span>
+            <span class="skill-badge">RESTful API 연동</span>
+            <span class="skill-badge">Linux</span>
           </div>
         </div>
         <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800 hover:border-purple-800 transition-colors">
@@ -177,7 +208,7 @@
             <span class="skill-badge">JavaScript</span>
             <span class="skill-badge">jQuery</span>
             <span class="skill-badge">Bootstrap</span>
-            <span class="skill-badge">Template Engine</span>
+            <span class="skill-badge">Template_</span>
           </div>
         </div>
         <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800 hover:border-green-800 transition-colors">
@@ -187,7 +218,8 @@
             <span class="skill-badge">MySQL</span>
             <span class="skill-badge">MSSQL</span>
             <span class="skill-badge">PostgreSQL</span>
-            <span class="skill-badge">Vector DB</span>
+            <span class="skill-badge">Stored Procedure</span>
+            <span class="skill-badge">이종 DB 연동</span>
           </div>
         </div>
         <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800 hover:border-orange-800 transition-colors">
@@ -197,9 +229,12 @@
             <span class="skill-badge">OpenAI API</span>
             <span class="skill-badge">Dify LLM</span>
             <span class="skill-badge">Docker</span>
-            <span class="skill-badge">AWS EC2</span>
             <span class="skill-badge">CI/CD</span>
             <span class="skill-badge">Power Automate</span>
+            <span class="skill-badge">Claude Code</span>
+            <span class="skill-badge">Cursor</span>
+            <span class="skill-badge">GitLab</span>
+            <span class="skill-badge">Postman</span>
           </div>
         </div>
       </div>
@@ -228,11 +263,13 @@
                 <p class="text-blue-400 text-sm font-medium mb-1">AI솔루션개발팀 · 주임</p>
                 <p class="text-gray-500 text-xs mb-4">Full-Stack Developer & AI Engineer · 3년 9개월</p>
                 <ul class="text-gray-400 text-sm space-y-2">
-                  <li class="flex gap-2"><span class="text-blue-400 mt-0.5 shrink-0">▸</span>이커머스 플랫폼 풀스택 개발 (컴퓨터코리아·패밀리컴코)</li>
-                  <li class="flex gap-2"><span class="text-blue-400 mt-0.5 shrink-0">▸</span>Alipay·UnionPay PG 연동 — 결제 아키텍처 재설계 전 구간 단독 담당</li>
-                  <li class="flex gap-2"><span class="text-blue-400 mt-0.5 shrink-0">▸</span>Python FastAPI 기반 AI 이미지 자동생성 시스템 — 디자인 업무 효율 80% 향상</li>
-                  <li class="flex gap-2"><span class="text-blue-400 mt-0.5 shrink-0">▸</span>Vector DB + Dify LLM 의미 기반 검색 시스템 구축</li>
-                  <li class="flex gap-2"><span class="text-blue-400 mt-0.5 shrink-0">▸</span>Docker 컨테이너화·CI/CD 파이프라인 구축으로 배포 자동화</li>
+                  <li>▸ 이커머스 풀스택 개발 — 컴퓨터코리아·패밀리컴코 쇼핑몰 및 관리자 시스템 <span class="text-white">단독 설계·개발</span></li>
+                  <li>▸ B2C 신규 플랫폼 <span class="text-white">Zero-to-One 런칭</span> — DB 설계부터 프론트·관리자 백오피스까지 3개월 내 단독 완성</li>
+                  <li>▸ Alipay·UnionPay PG 연동 — 멱등 콜백·행 잠금 기반 동시성 제어·환율 스냅샷 등 결제 안정성 설계 전 구간 단독 담당, <span class="text-white">7개 엣지케이스</span> 추적·해결</li>
+                  <li>▸ Python FastAPI 기반 AI 이미지 자동생성 시스템 — 디자인 업무 효율 <span class="text-white">80% 향상</span></li>
+                  <li>▸ Dify LLM + OpenAI API 연동 — 의미 기반 검색·OCR 시스템 구축으로 검색 품질 개선</li>
+                  <li>▸ 운영 자동화 — 이벤트 템플릿 엔진·상품 일괄 등록·계약서 접근 제어 등 반복 업무 구조적 제거</li>
+                  <li>▸ Docker 컨테이너화·CI/CD 파이프라인·RPA(Power Automate) 구축으로 배포·업무 자동화</li>
                 </ul>
               </div>
             </div>
@@ -241,7 +278,7 @@
 
           <!-- 시너지컨설팅 -->
           <div class="relative flex flex-col md:flex-row gap-8 md:gap-0">
-            <div class="md:w-1/2 md:pl-12 ml-12 md:ml-auto">
+            <div class="md:w-1/2 md:pr-12 ml-12 md:ml-0">
               <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800 hover:border-purple-800 transition-colors">
                 <div class="flex items-start justify-between mb-2 flex-wrap gap-2">
                   <h3 class="font-semibold text-white text-lg">(주)시너지컨설팅</h3>
@@ -301,7 +338,7 @@
         <a href="mailto:jin9192000@naver.com"
            class="text-gray-500 hover:text-white transition-colors text-sm">jin9192000@naver.com</a>
       </div>
-      <p class="text-gray-700 text-sm">© 2025 이유진. All rights reserved.</p>
+      <p class="text-gray-700 text-sm">© 2026 이유진. All rights reserved.</p>
     </div>
   </footer>
 
